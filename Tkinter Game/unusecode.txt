@@ -1,0 +1,47 @@
+    def collision_detection(obj, direct):
+    
+
+        for i in range(len(flags)):
+            flag_boudry = playground.bbox(flags[i])
+            flagleft = flag_boudry[0]
+            flagright = flag_boudry[2]
+            flagtop = flag_boudry[1]
+            flagbottom = flag_boudry[3]
+
+            playerboundry = playground.bbox(obj)
+            playerleft = playerboundry[0]
+            playerright = playerboundry[2]
+            playertop = playerboundry[1]
+            playerbottom = playerboundry[3]
+
+
+            if  flagleft< playerboundry[2] < flagright and flagtop < playerboundry[1]< flagbottom and direct == 1 : 
+
+                playground.move(obj ,-10,0)
+
+
+            elif flagleft < playerboundry[0] < flagright and flagtop < playerboundry[3]< flagbottom and direct == 2: 
+                playground.move(obj, 10 , 0)
+
+
+            elif flagleft < playerboundry[0] < flagright and flagtop < playerboundry[3]< flagbottom and direct == 4:
+                playground.move(obj , 0 , -10)
+
+            elif flagleft < playerboundry[2] < flagright and flagtop < playerboundry[1]< flagbottom and direct == 3:
+                playground.move(obj, 0 , 10)
+
+
+
+    def player_lost():
+        if player_lost:
+            child.destroy()
+
+            loserpage = Toplevel(window)
+
+            loser_canvas = Canvas(loserpage, width=800 , height=600 , bg = "white")
+
+            loser_image_png = PhotoImage(file="messilose.png")
+
+            loser_image = loser_canvas.create_image(400 , 300 , image = loser_image_png)
+
+
